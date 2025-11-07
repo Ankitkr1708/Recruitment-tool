@@ -11,7 +11,7 @@ const candidateSchema = new Schema({
     required: [true, 'Email is required'],
     unique: true,
     lowercase: true,
-    match: [/\S+@\S+\.\S+/, 'is invalid'] // Basic email validation
+    match: [/\S+@\S+\.\S+/, 'is invalid']
   },
   jobTitle: {
     type: String
@@ -22,17 +22,17 @@ const candidateSchema = new Schema({
     default: 'Applied'
   },
   score: {
-    type: Number, // For AI/manual ranking
+    type: Number,
     default: 0
   },
   resumeLink: {
-    type: String // URL to S3, Cloudinary, or other file storage
+    type: String, // Path to the uploaded file, e.g., /uploads/resume-123.pdf
+    required: [true, 'Resume is required']
   },
   appliedDate: {
     type: Date,
     default: Date.now
   }
-  // You could add 'notes', 'interviewFeedback', etc. later
-}, { timestamps: true }); // Adds createdAt and updatedAt automatically
+}, { timestamps: true });
 
 module.exports = mongoose.model('Candidate', candidateSchema);

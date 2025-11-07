@@ -6,8 +6,8 @@ const {
   getCandidateById,
   updateCandidate,
   scheduleInterview,
-  uploadResume,
-  getDashboardSummary // Import the new controller function
+  getDashboardSummary, // Import the new controller function
+  uploadResume
 } = require('../controllers/candidateController');
 const upload = require('../middleware/upload');
 
@@ -17,8 +17,6 @@ const upload = require('../middleware/upload');
 router.route('/dashboard/summary')
   .get(getDashboardSummary);
 
-// Upload resume file (returns resumeUrl)
-// NOTE: This route must come before the generic '/:id' route
 router.post('/upload-resume', upload.single('resume'), uploadResume);
 
 router.route('/')
